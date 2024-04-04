@@ -4,6 +4,9 @@
 
 package br.unipar.trabalhoPDV;
 
+import br.unipar.trabalhoPDV.Util.EntityManagerUtil;
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author Beatr
@@ -11,6 +14,10 @@ package br.unipar.trabalhoPDV;
 public class TrabalhoPDV {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+         SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                   EntityManagerUtil.getEntityManagerFactory();
+            }
+        });
     }
 }
