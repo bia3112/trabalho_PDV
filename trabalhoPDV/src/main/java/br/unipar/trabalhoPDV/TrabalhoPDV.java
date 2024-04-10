@@ -92,7 +92,7 @@ public class TrabalhoPDV extends JFrame {
      @Override
     public void dispose() {
         EntityManagerUtil.closeEntityManagerFactory();
-        super.dispose(); 
+        super.dispose();
     }
 }
 
