@@ -4,7 +4,6 @@
  */
 package br.com.unipar.trabalhoPDV.tablemodels;
 
-import br.unipar.trabalhoPDV.model.Cliente;
 import br.unipar.trabalhoPDV.model.Venda;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
