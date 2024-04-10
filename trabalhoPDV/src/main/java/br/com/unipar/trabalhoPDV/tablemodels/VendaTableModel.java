@@ -4,9 +4,10 @@
  */
 package br.com.unipar.trabalhoPDV.tablemodels;
 
-import br.unipar.trabalhoPDV.model.Cliente;
+
 import br.unipar.trabalhoPDV.model.Venda;
 import java.util.List;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -34,9 +35,11 @@ public class VendaTableModel extends DefaultTableModel {
         }
     }
     
-//    public getSelectedVenda(JTable table, List<Venda> vendas) {
-//        return null;
-//    }
+      public Venda getSelectedProduto(JTable table, 
+            List<Venda> produtos) {
+        return null;
+    }
+
     
     
     
