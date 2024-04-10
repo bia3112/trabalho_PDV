@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -18,9 +20,12 @@ public class Venda {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
     private int idVenda;
+    
+    @OneToOne
+    @JoinColumn(name = "id_cliente")
     private Cliente idCliente;
+    
     private double valorTotal;
     private double descontoTotal;
     private int qtdTotalItems;
