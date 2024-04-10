@@ -18,8 +18,7 @@ public class ClienteTableModel  extends DefaultTableModel {
     public ClienteTableModel() {
         this.addColumn("Nome");
         this.addColumn("Telefone");
-        this.addColumn("Endereço");
-        this.addColumn("Ativo");
+        this.addColumn("Cpf");
     }
     
     public ClienteTableModel(List<Cliente> listCliente) {
