@@ -4,6 +4,12 @@
  */
 package br.unipar.trabalhoPDV.model;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
 /**
  *
  * @author Beatr
@@ -11,8 +17,18 @@ package br.unipar.trabalhoPDV.model;
 
 public class ItemVenda {
     
+     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+     private int idItemVenda;
+     
+     @OneToOne
+    @JoinColumn(name = "idproduto")
     private Produto produtoId;
+    @OneToOne
+    @JoinColumn(name = "idvenda")
     private Venda vendaId;
+     
+     
     private String descricao;
     private int qtd;
     private double vlUnitario;
