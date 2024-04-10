@@ -24,54 +24,7 @@ import javax.swing.SwingUtilities;
 public class TrabalhoPDV extends JFrame {
      private JPanel panelCadastrarCliente;
 
-    public TrabalhoPDV() {
-        
-        setTitle("Menu");
-        setSize(600, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);        
-         
-        panelCadastrarCliente = new CadastrarClientePanel();
-        
-        // Criando a barra de menu
-        JMenuBar menuBar = new JMenuBar();
-
-        //Criar Menu Cadastro
-        JMenu menuCadastro = new JMenu("Cadastros");
-        
-        //Criar Menu Cliente dentro do Menu Cadastro
-        JMenu menuCliente = new JMenu("Cliente");
-        
-        //Criar menus de cadastro e lista de clientes
-        JMenuItem cadastrarCliente = new JMenuItem("Cadastrar");
-        JMenuItem listarCliente = new JMenuItem("Listar");
-        
-        
-        //Adicionar menus de cadastro no menu Cliente
-        menuCliente.add(cadastrarCliente);
-        menuCliente.add(listarCliente);
-        
-        //Adicionar o menu Cliente no menu Cadastro
-        menuCadastro.add(menuCliente);
-        
-        menuBar.add(menuCadastro);
-        
-
-         //Adiciona ações menus clientes
-        cadastrarCliente.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                abrirPanel(panelCadastrarCliente);
-            }
-        });
-        
-        listarCliente.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                new ListarClienteFrame().setVisible(true);
-            }
-        });
-
-        setJMenuBar(menuBar);
-    }
+   
     private void abrirPanel(JPanel panel) {
         getContentPane().removeAll();
         getContentPane().add(panel);
