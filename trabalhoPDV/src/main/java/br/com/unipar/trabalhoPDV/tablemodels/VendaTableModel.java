@@ -17,9 +17,9 @@ public class VendaTableModel extends DefaultTableModel {
 
     public VendaTableModel() {
         this.addColumn("ClienteId");
-        this.addColumn("Valor Total");
-        this.addColumn("Desconto Total");
-        this.addColumn("Qtd Total Itens");
+        this.addColumn("ValorTotal");
+        this.addColumn("DescontoTotal");
+        this.addColumn("QtdTotalItens");
     }
 
     public VendaTableModel(List<Venda> listVenda) {
