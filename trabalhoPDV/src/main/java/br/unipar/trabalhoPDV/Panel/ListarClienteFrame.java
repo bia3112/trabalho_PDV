@@ -5,6 +5,9 @@
 package br.unipar.trabalhoPDV.Panel;
 
 import br.com.unipar.trabalhoPDV.tablemodels.ClienteTableModel;
+import br.unipar.trabalhoPDV.Util.EntityManagerUtil;
+import br.unipar.trabalhoPDV.interfaces.ClienteDAOImpl;
+import br.unipar.trabalhoPDV.interfaces.ClienteDao;
 import br.unipar.trabalhoPDV.model.Cliente;
 import java.util.ArrayList;
 import java.util.List;
@@ -120,12 +123,15 @@ public class ListarClienteFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtPesquisar;
     // End of variables declaration//GEN-END:variables
  private void atualizarLista() {
-        List<Cliente> listaClientes = new ArrayList<>();
-        
-        ClienteTableModel model = 
-                new ClienteTableModel(listaClientes);
-        
-        jTableClientes.setModel(model);
-        
+     
+     List<Cliente> listaClientes = new ArrayList<>();
+         
+         ClienteDao clienteDao = new ClienteDAOImpl(EntityManagerUtil.getManager());
+         listaClientes.addAll(clienteDao.findAll());
+         
+         ClienteTableModel model = new ClienteTableModel(listaClientes);
+         
+         jTableClientes.setModel(model);
+
     }
 }
