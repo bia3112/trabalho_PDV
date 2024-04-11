@@ -4,10 +4,14 @@
  */
 package br.unipar.trabalhoPDV.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -19,52 +23,57 @@ public class Cliente {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String nome;
+    private String telefone;
+    private String cpf;
     
-    private int Id_Cliente;
-    private String Nome;
-    private String Telefone;
-    private String Cpf;
+    @OneToMany(mappedBy = "cliente")
+    private List<Venda> vendas = new ArrayList<>();
 
     public Cliente() {
+    }    
+
+    public Cliente(int id, String nome, String telefone, String cpf) {
+        this.id = id;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.cpf = cpf;
     }
 
-    public Cliente(int Id_Cliente, String Nome, String Telefone, String Cpf) {
-        this.Id_Cliente = Id_Cliente;
-        this.Nome = Nome;
-        this.Telefone = Telefone;
-        this.Cpf = Cpf;
+    public int getId() {
+        return id;
     }
 
-    public int getId_Cliente() {
-        return Id_Cliente;
-    }
-
-    public void setId_Cliente(int Id_Cliente) {
-        this.Id_Cliente = Id_Cliente;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
-    public void setNome(String Nome) {
-        this.Nome = Nome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getTelefone() {
-        return Telefone;
+        return telefone;
     }
 
-    public void setTelefone(String Telefone) {
-        this.Telefone = Telefone;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public String getCpf() {
-        return Cpf;
+        return cpf;
     }
 
-    public void setCpf(String Cpf) {
-        this.Cpf = Cpf;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
-    
+
+    public List<Venda> getVendas() {
+        return vendas;
+    }
 }

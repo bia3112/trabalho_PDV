@@ -4,12 +4,15 @@
  */
 package br.unipar.trabalhoPDV.model;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -20,41 +23,42 @@ public class Venda {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idVenda;
-    
-    @OneToOne
-    @JoinColumn(name = "id_cliente")
-    private Cliente idCliente;
-    
+    private int id;
     private double valorTotal;
     private double descontoTotal;
     private int qtdTotalItems;
+    
+    @ManyToOne
+    private Cliente cliente;
+    
+    @OneToMany(mappedBy = "venda", cascade = CascadeType.MERGE)
+    private List<ItemVenda> itens = new ArrayList<>();
 
     public Venda() {
     }
 
-    public Venda(int idVenda, Cliente idCliente, double valorTotal, double descontoTotal, int qtdTotalItems) {
-        this.idVenda = idVenda;
-        this.idCliente = idCliente;
+    public Venda(int id, Cliente cliente, double valorTotal, double descontoTotal, int qtdTotalItems) {
+        this.id = id;
+        this.cliente = cliente;
         this.valorTotal = valorTotal;
         this.descontoTotal = descontoTotal;
         this.qtdTotalItems = qtdTotalItems;
     }
 
-    public int getIdVenda() {
-        return idVenda;
+    public int getId() {
+        return id;
     }
 
-    public void setIdVenda(int idVenda) {
-        this.idVenda = idVenda;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Cliente getIdCliente() {
-        return idCliente;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setIdCliente(Cliente idCliente) {
-        this.idCliente = idCliente;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public double getValorTotal() {
@@ -80,5 +84,8 @@ public class Venda {
     public void setQtdTotalItems(int qtdTotalItems) {
         this.qtdTotalItems = qtdTotalItems;
     }
-    
+
+    public List<ItemVenda> getItens() {
+        return itens;
+    }
 }

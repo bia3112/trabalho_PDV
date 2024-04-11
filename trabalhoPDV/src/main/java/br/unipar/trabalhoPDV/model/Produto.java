@@ -4,10 +4,15 @@
  */
 package br.unipar.trabalhoPDV.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import org.hibernate.annotations.ManyToAny;
 
 /**
  *
@@ -15,27 +20,29 @@ import javax.persistence.Id;
  */
 @Entity
 public class Produto {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
-    private int idProduto;
+    private int id;
     private String descricao;
+    
+    @OneToMany(mappedBy = "produto")
+    private List<ItemVenda> itens = new ArrayList<>();
 
     public Produto() {
     }
 
-    public Produto(int idProduto, String descricao) {
-        this.idProduto = idProduto;
+    public Produto(int id, String descricao) {
+        this.id = id;
         this.descricao = descricao;
     }
 
-    public int getIdProduto() {
-        return idProduto;
+    public int getId() {
+        return id;
     }
 
-    public void setIdProduto(int idProduto) {
-        this.idProduto = idProduto;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDescricao() {
@@ -45,5 +52,9 @@ public class Produto {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
- 
+
+    public List<ItemVenda> getItens() {
+        return itens;
+    }
+
 }

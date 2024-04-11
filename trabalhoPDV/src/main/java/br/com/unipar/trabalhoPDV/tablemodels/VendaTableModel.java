@@ -28,7 +28,7 @@ public class VendaTableModel extends DefaultTableModel {
         
         for (Venda venda : listVenda) {
             this.addRow(new String[] {
-                String.valueOf(venda.getIdCliente()),
+                String.valueOf(venda.getCliente().getNome()),
                 String.valueOf(venda.getValorTotal()),
                 String.valueOf(venda.getDescontoTotal()),
                 String.valueOf(venda.getQtdTotalItems())});

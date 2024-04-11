@@ -4,62 +4,55 @@
  */
 package br.unipar.trabalhoPDV.model;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author Beatr
  */
 
+@Entity
 public class ItemVenda {
     
-     @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     private int idItemVenda;
-     
-     @OneToOne
-    @JoinColumn(name = "idproduto")
-    private Produto produtoId;
-    @OneToOne
-    @JoinColumn(name = "idvenda")
-    private Venda vendaId;
-     
-     
+    private int id;
     private String descricao;
     private int qtd;
     private double vlUnitario;
     private double vlTotal;
     private double descontoUn;
+    
+    @ManyToOne
+    private Venda venda;
+    
+    @ManyToOne
+    private Produto produto;
+    
+    public ItemVenda() { }
 
-    public ItemVenda(Produto produtoId, Venda vendaId, String descricao, 
-            int qtd, double vlUnitario, double vlTotal, double descontoUn) {
-        this.produtoId = produtoId;
-        this.vendaId = vendaId;
+    public ItemVenda(int id, String descricao, int qtd, double vlUnitario, double vlTotal, double descontoUn, Venda venda, Produto produto) {
+        this.id = id;
         this.descricao = descricao;
         this.qtd = qtd;
         this.vlUnitario = vlUnitario;
         this.vlTotal = vlTotal;
         this.descontoUn = descontoUn;
+        this.venda = venda;
+        this.produto = produto;
     }
 
-    public Produto getProdutoId() {
-        return produtoId;
+    public int getId() {
+        return id;
     }
 
-    public void setProdutoId(Produto produtoId) {
-        this.produtoId = produtoId;
-    }
-
-    public Venda getVendaId() {
-        return vendaId;
-    }
-
-    public void setVendaId(Venda vendaId) {
-        this.vendaId = vendaId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDescricao() {
@@ -101,5 +94,42 @@ public class ItemVenda {
     public void setDescontoUn(double descontoUn) {
         this.descontoUn = descontoUn;
     }
- 
+
+    public Venda getVenda() {
+        return venda;
+    }
+
+    public void setVenda(Venda venda) {
+        this.venda = venda;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 97 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ItemVenda other = (ItemVenda) obj;
+        return this.id == other.id;
+    }
 }

@@ -30,8 +30,8 @@ public class ItemVendaTableModel extends DefaultTableModel {
         
         for(ItemVenda itemVenda : listItemVenda) {
             this.addRow(new String [] {
-                String.valueOf(itemVenda.getProdutoId()),
-                String.valueOf(itemVenda.getVendaId()),
+                String.valueOf(itemVenda.getProduto().getId()),
+                String.valueOf(itemVenda.getVenda().getId()),
                 itemVenda.getDescricao(),
                 String.valueOf(itemVenda.getQtd()),
                 String.valueOf(itemVenda.getVlUnitario()),
