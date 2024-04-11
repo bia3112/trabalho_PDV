@@ -69,8 +69,10 @@ public class ClienteDAOImpl implements ClienteDao {
         return entityManager.find(Cliente.class, id);
     }
 
-    @Override
-    public List<Cliente> findAll() {
+     public List<Cliente> findAll() {
+//        return entityManager.createQuery("SELECT c FROM Cliente c"
+//                + "WHERE c.nome = :nome").setParameter("cpf", "")
+//                .getSingleResult();
 
         return entityManager.createQuery("SELECT c FROM Cliente c",
                 Cliente.class).getResultList();
