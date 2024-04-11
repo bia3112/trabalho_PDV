@@ -23,6 +23,7 @@ import javax.swing.SwingUtilities;
 public class TrabalhoPDV extends JFrame{
     
       private JPanel panelCadastrarCliente;
+      
              
      public TrabalhoPDV() {
         
@@ -32,7 +33,7 @@ public class TrabalhoPDV extends JFrame{
         setLocationRelativeTo(null);        
          
         panelCadastrarCliente = new CadastrarClientePanel();
-        
+       
         // Criando a barra de menu
         JMenuBar menuBar = new JMenuBar();
 
@@ -66,7 +67,8 @@ public class TrabalhoPDV extends JFrame{
         
         listarCliente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new ListarClienteFrame().setVisible(true);
+              new ListarClienteFrame().setVisible(true);
+               
             }
         });
 

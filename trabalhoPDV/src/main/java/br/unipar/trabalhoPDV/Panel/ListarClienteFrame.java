@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package br.unipar.trabalhoPDV.Panel;
 
@@ -13,13 +13,13 @@ import java.util.List;
  *
  * @author vinid
  */
-public class ListarClienteFrame extends javax.swing.JPanel {
+public class ListarClienteFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form ListarClienteFrame
      */
     public ListarClienteFrame() {
-         initComponents();
+       initComponents();
         setLocationRelativeTo(null);
         
         atualizarLista();
@@ -34,23 +34,26 @@ public class ListarClienteFrame extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelListarCliente = new javax.swing.JPanel();
+        txtPesquisar = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableClientes = new javax.swing.JTable();
         btnCancelar = new javax.swing.JButton();
         btnSelecionar = new javax.swing.JButton();
-        txtPesquisar = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Pesquisar");
 
         jTableClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Nome", "Telefone", "Endereço", "Ativo"
+                "Nome", "Telefone", "Cpf"
             }
         ));
         jScrollPane1.setViewportView(jTableClientes);
@@ -65,72 +68,58 @@ public class ListarClienteFrame extends javax.swing.JPanel {
         btnSelecionar.setText("Selecionar");
         btnSelecionar.setToolTipText("");
 
-        jLabel1.setText("Pesquisar");
-
-        javax.swing.GroupLayout jPanelListarClienteLayout = new javax.swing.GroupLayout(jPanelListarCliente);
-        jPanelListarCliente.setLayout(jPanelListarClienteLayout);
-        jPanelListarClienteLayout.setHorizontalGroup(
-            jPanelListarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelListarClienteLayout.createSequentialGroup()
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnSelecionar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCancelar))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelListarClienteLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPesquisar))
-        );
-        jPanelListarClienteLayout.setVerticalGroup(
-            jPanelListarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelListarClienteLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelListarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(13, 13, 13)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelListarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnSelecionar))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanelListarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelListarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(13, 13, 13)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCancelar)
+                    .addComponent(btnSelecionar))
+                .addGap(0, 21, Short.MAX_VALUE))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        
+        dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    /**
+     * @param args the command line arguments
+     */
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSelecionar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanelListarCliente;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableClientes;
     private javax.swing.JTextField txtPesquisar;
     // End of variables declaration//GEN-END:variables
-   private void atualizarLista() {
+ private void atualizarLista() {
         List<Cliente> listaClientes = new ArrayList<>();
         
         ClienteTableModel model = 
@@ -139,11 +128,4 @@ public class ListarClienteFrame extends javax.swing.JPanel {
         jTableClientes.setModel(model);
         
     }
-
-    private void setLocationRelativeTo(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-  
-
 }
