@@ -6,6 +6,7 @@ package br.unipar.trabalhoPDV;
 
 import br.unipar.trabalhoPDV.Panel.CadastrarClientePanel;
 import br.unipar.trabalhoPDV.Panel.ListarClienteFrame;
+import br.unipar.trabalhoPDV.Panel.ListarProdutoFrame;
 import br.unipar.trabalhoPDV.Util.EntityManagerUtil;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,7 +23,6 @@ import javax.swing.SwingUtilities;
  */
 public class TrabalhoPDV extends JFrame{
     
-      private JPanel panelCadastrarCliente;
       
              
      public TrabalhoPDV() {
@@ -31,46 +31,48 @@ public class TrabalhoPDV extends JFrame{
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);        
-         
-        panelCadastrarCliente = new CadastrarClientePanel();
+     
        
         // Criando a barra de menu
         JMenuBar menuBar = new JMenuBar();
 
         //Criar Menu Cadastro
-        JMenu menuCadastro = new JMenu("Cadastros");
+        JMenu menulistas = new JMenu("Listas");
         
-        //Criar Menu Cliente dentro do Menu Cadastro
-        JMenu menuCliente = new JMenu("Cliente");
+       
+        
         
         //Criar menus de cadastro e lista de clientes
-        JMenuItem cadastrarCliente = new JMenuItem("Cadastrar");
-        JMenuItem listarCliente = new JMenuItem("Listar");
+       
+        JMenuItem listarCliente = new JMenuItem("Cliente");
+        JMenuItem ListarProduto = new JMenuItem("Produto");
         
         
         //Adicionar menus de cadastro no menu Cliente
-        menuCliente.add(cadastrarCliente);
-        menuCliente.add(listarCliente);
+       
+        menulistas.add(listarCliente);
+        menulistas.add(ListarProduto);
         
-        //Adicionar o menu Cliente no menu Cadastro
-        menuCadastro.add(menuCliente);
         
-        menuBar.add(menuCadastro);
+        
+        menuBar.add(menulistas);
         
 
          //Adiciona ações menus clientes
-        cadastrarCliente.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                abrirPanel(panelCadastrarCliente);
-            }
-        });
-        
+      
         listarCliente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
               new ListarClienteFrame().setVisible(true);
                
             }
         });
+        ListarProduto.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+              new ListarProdutoFrame().setVisible(true);
+               
+            }
+        });
+
 
         setJMenuBar(menuBar);
     }
