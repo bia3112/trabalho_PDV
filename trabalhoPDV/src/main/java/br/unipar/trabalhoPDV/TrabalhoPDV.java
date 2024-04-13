@@ -5,6 +5,7 @@
 package br.unipar.trabalhoPDV;
 
 import br.unipar.trabalhoPDV.Panel.CadastrarClientePanel;
+import br.unipar.trabalhoPDV.Panel.CadastroItemVendaPanel;
 import br.unipar.trabalhoPDV.Panel.ListarClienteFrame;
 import br.unipar.trabalhoPDV.Panel.ListarProdutoFrame;
 import br.unipar.trabalhoPDV.Util.EntityManagerUtil;
@@ -23,6 +24,8 @@ import javax.swing.SwingUtilities;
  */
 public class TrabalhoPDV extends JFrame{
     
+    private JPanel panelcadastroItemvenda;
+    
       
              
      public TrabalhoPDV() {
@@ -30,14 +33,19 @@ public class TrabalhoPDV extends JFrame{
         setTitle("Menu");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);        
-     
+        setLocationRelativeTo(null);     
+        
+        // Instanciando os painéis
+        panelcadastroItemvenda = new CadastroItemVendaPanel();
+        
        
         // Criando a barra de menu
         JMenuBar menuBar = new JMenuBar();
+        
 
         //Criar Menu Cadastro
         JMenu menulistas = new JMenu("Listas");
+        JMenu menuCadastro = new JMenu("Cadastro Item");
         
        
         
@@ -47,15 +55,22 @@ public class TrabalhoPDV extends JFrame{
         JMenuItem listarCliente = new JMenuItem("Cliente");
         JMenuItem ListarProduto = new JMenuItem("Produto");
         
+        JMenuItem cadastroitem = new JMenuItem("Item Venda");
+        
+        
+        
         
         //Adicionar menus de cadastro no menu Cliente
        
         menulistas.add(listarCliente);
         menulistas.add(ListarProduto);
         
+        menuCadastro.add(cadastroitem);
+        
         
         
         menuBar.add(menulistas);
+        menuBar.add(menuCadastro);
         
 
          //Adiciona ações menus clientes
@@ -70,6 +85,11 @@ public class TrabalhoPDV extends JFrame{
             public void actionPerformed(ActionEvent e) {
               new ListarProdutoFrame().setVisible(true);
                
+            }
+        });
+        eventoMouseTeclado.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                abrirPanel(panelEventoMouseTeclado);
             }
         });
 
