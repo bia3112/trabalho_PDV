@@ -4,6 +4,9 @@
  */
 package br.unipar.trabalhoPDV.Panel;
 
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Beatr
@@ -31,7 +34,7 @@ public class VendaPanel extends javax.swing.JPanel {
         campoId = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaProdutos = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         campoCliente = new javax.swing.JTextField();
         btPesquisarCliente = new javax.swing.JButton();
@@ -59,7 +62,7 @@ public class VendaPanel extends javax.swing.JPanel {
 
         jLabel3.setText("Qtd. Total Itens");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -78,7 +81,7 @@ public class VendaPanel extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabelaProdutos);
 
         jLabel4.setText("Cliente:");
 
@@ -109,6 +112,11 @@ public class VendaPanel extends javax.swing.JPanel {
         });
 
         btCancelar.setText("Cancelar");
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
+            }
+        });
 
         btSelecionarProduto.setText("Selecionar");
         btSelecionarProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -223,6 +231,10 @@ public class VendaPanel extends javax.swing.JPanel {
         abrirListaProduto();
     }//GEN-LAST:event_btSelecionarProdutoActionPerformed
 
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+        limparDados();
+    }//GEN-LAST:event_btCancelarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancelar;
     private javax.swing.JButton btFinalizar;
@@ -241,7 +253,7 @@ public class VendaPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabelaProdutos;
     // End of variables declaration//GEN-END:variables
 
     private void abrirListaCliente() {
@@ -256,6 +268,19 @@ public class VendaPanel extends javax.swing.JPanel {
         listarProdutoFrame.setVisible(true);
     }
 
-
+    private void limparDados() {
+        
+        for (java.awt.Component componente : this.getComponents()) {
+            if (componente instanceof JTextField) {
+                ((JTextField) componente).setText("");
+            } 
+        }   
+        
+        int rowCount = tabelaProdutos.getRowCount();
+        for (int i = rowCount - 1; i >= 0; i--) {
+            tabelaProdutos.removeAll();
+        }
+        
+    }
 
 }
