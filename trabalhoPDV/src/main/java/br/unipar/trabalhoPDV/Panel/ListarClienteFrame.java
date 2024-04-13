@@ -81,6 +81,7 @@ public class ListarClienteFrame extends javax.swing.JFrame {
                 "Nome", "Telefone", "CPF"
             }
         ));
+        jTableClientes.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTableClientes);
 
         btnCancelar.setText("Cancelar");
