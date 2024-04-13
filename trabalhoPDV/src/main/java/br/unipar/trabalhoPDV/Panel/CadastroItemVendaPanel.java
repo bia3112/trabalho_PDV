@@ -5,6 +5,7 @@
 package br.unipar.trabalhoPDV.Panel;
 
 import br.unipar.trabalhoPDV.model.ItemVenda;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -213,21 +214,35 @@ public class CadastroItemVendaPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_txtDescontoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       double valorunitario, descontounitario, valototal;
-       int qtd;
-        valorunitario= Double.parseDouble(labelVlTo.getText());
-        descontounitario= Double.parseDouble(txtDesconto.getText());
-       // valototal= Double.parseDouble(labelVlTo.getText());
+                                      
+    try {
+        double valorunitario, descontounitario, valototal;
+        int qtd;
+        valorunitario = Double.parseDouble(labelVlTo.getText());
+        System.out.println("valor unitario: " + valorunitario);
+        
+        descontounitario = Double.parseDouble(txtDesconto.getText());
+        System.out.println("valor descnto: " + descontounitario);
+        
         qtd = Integer.parseInt(txtQTD.getText());
-  
-       double taxaDecimal = descontounitario / 100.0;
-       double valorqtd  = valorunitario * qtd;
-       valototal = valorqtd * taxaDecimal;
+        System.out.println("qtd: " + qtd);
+      
+        double taxaDecimal = descontounitario / 100.0;
+        System.out.println("taxaDecimal: " + taxaDecimal);
+        
+        double valorqtd = valorunitario * qtd;
+        System.out.println("valorqtd: " + valorqtd);
+        
+        valototal = valorqtd * taxaDecimal;
+        System.out.println("valototal: " + valototal);
+        
         String resultadoTexto = String.valueOf(valototal);
         labelVlTo.setText(resultadoTexto);
-        
-       
-
+        labelVlTo.repaint(); // Atualiza o rótulo para refletir o novo texto
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Erro ao calcular o valor total. Certifique-se de que os campos estão preenchidos corretamente.", "Erro", JOptionPane.ERROR_MESSAGE);
+    }
+    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed

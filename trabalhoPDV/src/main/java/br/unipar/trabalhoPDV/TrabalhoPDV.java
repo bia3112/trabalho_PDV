@@ -87,9 +87,9 @@ public class TrabalhoPDV extends JFrame{
                
             }
         });
-        eventoMouseTeclado.addActionListener(new ActionListener() {
+            cadastroitem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                abrirPanel(panelEventoMouseTeclado);
+                abrirPanel(panelcadastroItemvenda);
             }
         });
 
