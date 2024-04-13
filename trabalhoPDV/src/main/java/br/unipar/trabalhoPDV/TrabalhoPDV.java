@@ -31,7 +31,7 @@ public class TrabalhoPDV extends JFrame{
      public TrabalhoPDV() {
         
         setTitle("Menu");
-        setSize(600, 400);
+        setSize(600, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);    
         

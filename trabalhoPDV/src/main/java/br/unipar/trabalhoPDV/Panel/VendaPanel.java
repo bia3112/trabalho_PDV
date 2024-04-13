@@ -34,9 +34,8 @@ public class VendaPanel extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         campoCliente = new javax.swing.JTextField();
-        btPesquisar = new javax.swing.JButton();
+        btPesquisarCliente = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        selecaoProduto = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         exibirQtdTotal = new javax.swing.JTextField();
@@ -44,6 +43,7 @@ public class VendaPanel extends javax.swing.JPanel {
         exibirValorTotal = new javax.swing.JTextField();
         btFinalizar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
+        btSelecionarProduto = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 48)); // NOI18N
         jLabel1.setText("Venda");
@@ -82,11 +82,14 @@ public class VendaPanel extends javax.swing.JPanel {
 
         jLabel4.setText("Cliente:");
 
-        btPesquisar.setText("Pesquisar");
+        btPesquisarCliente.setText("Pesquisar");
+        btPesquisarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPesquisarClienteActionPerformed(evt);
+            }
+        });
 
-        jLabel5.setText("Selecionar Produto:");
-
-        selecaoProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel5.setText("Produto:");
 
         jLabel6.setText("Desconto Total");
 
@@ -106,6 +109,13 @@ public class VendaPanel extends javax.swing.JPanel {
         });
 
         btCancelar.setText("Cancelar");
+
+        btSelecionarProduto.setText("Selecionar");
+        btSelecionarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSelecionarProdutoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -147,17 +157,17 @@ public class VendaPanel extends javax.swing.JPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                             .addComponent(jLabel5)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(selecaoProduto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addComponent(btSelecionarProduto))
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                             .addComponent(jLabel4)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(campoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btPesquisar))))
+                                    .addComponent(btPesquisarCliente))))
                         .addGap(0, 32, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -172,11 +182,11 @@ public class VendaPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(campoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btPesquisar))
+                    .addComponent(btPesquisarCliente))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(selecaoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btSelecionarProduto))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -205,11 +215,19 @@ public class VendaPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btFinalizarActionPerformed
 
+    private void btPesquisarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarClienteActionPerformed
+        abrirListaCliente();
+    }//GEN-LAST:event_btPesquisarClienteActionPerformed
+
+    private void btSelecionarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecionarProdutoActionPerformed
+        abrirListaProduto();
+    }//GEN-LAST:event_btSelecionarProdutoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancelar;
     private javax.swing.JButton btFinalizar;
-    private javax.swing.JButton btPesquisar;
+    private javax.swing.JButton btPesquisarCliente;
+    private javax.swing.JButton btSelecionarProduto;
     private javax.swing.JTextField campoCliente;
     private javax.swing.JTextField campoId;
     private javax.swing.JTextField exibirDescTotal;
@@ -224,6 +242,20 @@ public class VendaPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JComboBox<String> selecaoProduto;
     // End of variables declaration//GEN-END:variables
+
+    private void abrirListaCliente() {
+        
+        ListarClienteFrame listarClienteFrame = new ListarClienteFrame();
+        listarClienteFrame.setVisible(true);
+
+    }
+
+    private void abrirListaProduto() {
+        ListarProdutoFrame listarProdutoFrame = new ListarProdutoFrame();
+        listarProdutoFrame.setVisible(true);
+    }
+
+
+
 }
