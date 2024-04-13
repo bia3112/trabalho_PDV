@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 public class ProdutoTableModel extends DefaultTableModel {
 
     public ProdutoTableModel() {
+         this.addColumn("Codigo");
         this.addColumn("Descricao");
     }
     
@@ -24,6 +25,7 @@ public class ProdutoTableModel extends DefaultTableModel {
         
         for(Produto produto : listProduto) {
             this.addRow(new String[] {
+                 String.valueOf(produto.getId()),
                 produto.getDescricao()});
         }
         

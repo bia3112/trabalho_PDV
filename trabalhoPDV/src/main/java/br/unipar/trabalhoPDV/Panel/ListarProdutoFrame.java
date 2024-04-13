@@ -63,18 +63,19 @@ public class ListarProdutoFrame extends javax.swing.JFrame {
 
         jTableClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null},
-                {null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Descrição"
+                "Codigo", "Descrição"
             }
         ));
+        jTableClientes.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTableClientes);
 
         btnSelecionar1.setText("Pesquisar");

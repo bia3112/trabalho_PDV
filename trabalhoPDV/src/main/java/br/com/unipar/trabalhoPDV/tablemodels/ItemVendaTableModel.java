@@ -44,6 +44,7 @@ public class ItemVendaTableModel extends DefaultTableModel {
     public ItemVenda getSelectedItemVenda(JTable table,
             List<ItemVenda> itemVendas) {
         return null;
+        
     }
     
 }
