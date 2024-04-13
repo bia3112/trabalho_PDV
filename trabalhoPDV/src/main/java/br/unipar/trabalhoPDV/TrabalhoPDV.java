@@ -4,10 +4,11 @@
 
 package br.unipar.trabalhoPDV;
 
-import br.unipar.trabalhoPDV.Panel.CadastrarClientePanel;
 import br.unipar.trabalhoPDV.Panel.ListarClienteFrame;
 import br.unipar.trabalhoPDV.Panel.ListarProdutoFrame;
+import br.unipar.trabalhoPDV.Panel.VendaPanel;
 import br.unipar.trabalhoPDV.Util.EntityManagerUtil;
+import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -23,23 +24,32 @@ import javax.swing.SwingUtilities;
  */
 public class TrabalhoPDV extends JFrame{
     
-      
+    private CardLayout cardLayout;
+    private JPanel cardPanel;
+    private JPanel panelVenda;
              
      public TrabalhoPDV() {
         
         setTitle("Menu");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);        
-     
+        setLocationRelativeTo(null);    
+        
+        //panel principal Venda
+        cardLayout = new CardLayout();
+        cardPanel = new JPanel(cardLayout);
+
+        panelVenda = new VendaPanel();
+        cardPanel.add(panelVenda, "Venda");
+        
+        add(cardPanel);
+         cardLayout.show(cardPanel, "VENDA");
        
         // Criando a barra de menu
         JMenuBar menuBar = new JMenuBar();
 
         //Criar Menu Cadastro
         JMenu menulistas = new JMenu("Listas");
-        
-       
         
         
         //Criar menus de cadastro e lista de clientes
