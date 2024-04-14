@@ -11,6 +11,9 @@ import br.unipar.trabalhoPDV.interfaces.ClienteDao;
 import br.unipar.trabalhoPDV.model.Cliente;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -42,7 +45,7 @@ public class ListarClienteFrame extends javax.swing.JFrame {
         txtPesquisar = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableClientes = new javax.swing.JTable();
+        tabelaCliente = new javax.swing.JTable();
         btnCancelar = new javax.swing.JButton();
         btnSelecionar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -67,7 +70,7 @@ public class ListarClienteFrame extends javax.swing.JFrame {
 
         jLabel1.setText("Nome");
 
-        jTableClientes.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -81,7 +84,7 @@ public class ListarClienteFrame extends javax.swing.JFrame {
                 "Nome", "Telefone", "CPF"
             }
         ));
-        jScrollPane1.setViewportView(jTableClientes);
+        jScrollPane1.setViewportView(tabelaCliente);
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -217,7 +220,7 @@ public class ListarClienteFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void btnSelecionar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionar1ActionPerformed
-        // TODO add your handling code here:
+        selecionarClienteVenda();
     }//GEN-LAST:event_btnSelecionar1ActionPerformed
 
     /**
@@ -239,7 +242,7 @@ public class ListarClienteFrame extends javax.swing.JFrame {
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTableClientes;
+    private javax.swing.JTable tabelaCliente;
     private javax.swing.JTextField txtPesquisar;
     private javax.swing.JTextField txtPesquisar1;
     private javax.swing.JTextField txtPesquisar2;
@@ -253,7 +256,25 @@ public class ListarClienteFrame extends javax.swing.JFrame {
          
          ClienteTableModel model = new ClienteTableModel(listaClientes);
          
-         jTableClientes.setModel(model);
+         tabelaCliente.setModel(model);
 
     }
+
+    private void selecionarClienteVenda() {
+        
+//        VendaPanel vendaPanel = new VendaPanel();
+//        JTextField cliente = vendaPanel.getCliente();
+//        
+//        int selectedRow = tabelaCliente.getSelectedRow();
+//
+//        Object nome = tabelaCliente.getValueAt(selectedRow, 0);
+//
+//        cliente.setText(nome != null ? nome.toString() : "");
+        
+    }  
+    
+    
+    
+    
+    
 }
