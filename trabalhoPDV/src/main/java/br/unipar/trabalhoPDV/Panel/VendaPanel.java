@@ -4,6 +4,9 @@
  */
 package br.unipar.trabalhoPDV.Panel;
 
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Beatr
@@ -14,7 +17,7 @@ public class VendaPanel extends javax.swing.JPanel {
      * Creates new form VendaPanel
      */
     public VendaPanel() {
-        initComponents();
+        initComponents(); 
     }
 
     /**
@@ -31,7 +34,7 @@ public class VendaPanel extends javax.swing.JPanel {
         campoId = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaProdutos = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         campoCliente = new javax.swing.JTextField();
         btPesquisarCliente = new javax.swing.JButton();
@@ -39,7 +42,7 @@ public class VendaPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         exibirQtdTotal = new javax.swing.JTextField();
-        exibirDescTotal = new javax.swing.JTextField();
+        desconto = new javax.swing.JTextField();
         exibirValorTotal = new javax.swing.JTextField();
         btFinalizar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
@@ -59,7 +62,7 @@ public class VendaPanel extends javax.swing.JPanel {
 
         jLabel3.setText("Qtd. Total Itens");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -78,7 +81,7 @@ public class VendaPanel extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabelaProdutos);
 
         jLabel4.setText("Cliente:");
 
@@ -97,8 +100,6 @@ public class VendaPanel extends javax.swing.JPanel {
 
         exibirQtdTotal.setEditable(false);
 
-        exibirDescTotal.setEditable(false);
-
         exibirValorTotal.setEditable(false);
 
         btFinalizar.setText("Finalizar");
@@ -109,6 +110,11 @@ public class VendaPanel extends javax.swing.JPanel {
         });
 
         btCancelar.setText("Cancelar");
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
+            }
+        });
 
         btSelecionarProduto.setText("Selecionar");
         btSelecionarProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -138,7 +144,7 @@ public class VendaPanel extends javax.swing.JPanel {
                             .addComponent(exibirQtdTotal))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(exibirDescTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(desconto, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -197,7 +203,7 @@ public class VendaPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(exibirQtdTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(exibirDescTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(desconto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(exibirValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -212,7 +218,7 @@ public class VendaPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_campoIdActionPerformed
 
     private void btFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFinalizarActionPerformed
-        // TODO add your handling code here:
+        finalizar();
     }//GEN-LAST:event_btFinalizarActionPerformed
 
     private void btPesquisarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarClienteActionPerformed
@@ -221,7 +227,13 @@ public class VendaPanel extends javax.swing.JPanel {
 
     private void btSelecionarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecionarProdutoActionPerformed
         abrirListaProduto();
+        calcularQtdTotal();
+        calcularValorTotal();
     }//GEN-LAST:event_btSelecionarProdutoActionPerformed
+
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+        limparDados();
+    }//GEN-LAST:event_btCancelarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancelar;
@@ -230,7 +242,7 @@ public class VendaPanel extends javax.swing.JPanel {
     private javax.swing.JButton btSelecionarProduto;
     private javax.swing.JTextField campoCliente;
     private javax.swing.JTextField campoId;
-    private javax.swing.JTextField exibirDescTotal;
+    private javax.swing.JTextField desconto;
     private javax.swing.JTextField exibirQtdTotal;
     private javax.swing.JTextField exibirValorTotal;
     private javax.swing.JLabel jLabel1;
@@ -241,21 +253,72 @@ public class VendaPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabelaProdutos;
     // End of variables declaration//GEN-END:variables
 
-    private void abrirListaCliente() {
-        
+    private void abrirListaCliente() {   
         ListarClienteFrame listarClienteFrame = new ListarClienteFrame();
         listarClienteFrame.setVisible(true);
-
     }
+ 
 
     private void abrirListaProduto() {
         ListarProdutoFrame listarProdutoFrame = new ListarProdutoFrame();
         listarProdutoFrame.setVisible(true);
     }
 
+    private void limparDados() {
+        
+        for (java.awt.Component componente : this.getComponents()) {
+            if (componente instanceof JTextField) {
+                ((JTextField) componente).setText("");
+            } 
+        }   
+        
+        int rowCount = tabelaProdutos.getRowCount();
+        for (int i = rowCount - 1; i >= 0; i--) {
+            tabelaProdutos.removeAll();
+        }
+        
+    }
 
+    private void finalizar() {
+        JOptionPane.showMessageDialog(null, "Finalizada com sucesso!");
+        limparDados();
+    }
+    
+    private void calcularQtdTotal() {
+        int qtdTotal = 0;
+        
+        for (int i = 0; i < tabelaProdutos.getRowCount(); i++) {
+            Object valorCelula = tabelaProdutos.getValueAt(i, 1);
+            
+            if (valorCelula != null) {
+                int valor = Integer.parseInt(valorCelula.toString());
+                qtdTotal += valor;
+            }
+        }
+        exibirQtdTotal.setText(String.valueOf(qtdTotal));      
+    }
+ 
+    private void calcularValorTotal() {
+        double vlTotal = 0;
+        double desc = Double.parseDouble(desconto.getText());
+        
+        for (int i = 0; i < tabelaProdutos.getRowCount(); i++) {
+            Object valorCelula = tabelaProdutos.getValueAt(i, 4);
+            
+            if (valorCelula != null) {
+                double valor = Double.parseDouble(valorCelula.toString());
+                vlTotal += valor;
+            }
+        }
+        
+        double vlFinal = vlTotal - (vlTotal * (desc / 100.0));
+        String valorFormatado = String.format("%.2f", vlFinal);
+        
+        exibirQtdTotal.setText(valorFormatado); 
+   }
+ 
 
 }

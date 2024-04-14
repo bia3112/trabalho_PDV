@@ -97,6 +97,11 @@ public class ListarProdutoFrame extends javax.swing.JFrame {
 
         btnSelecionar.setText("Selecionar");
         btnSelecionar.setToolTipText("");
+        btnSelecionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelecionarActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 48)); // NOI18N
         jLabel2.setText("Produtos");
@@ -175,6 +180,10 @@ public class ListarProdutoFrame extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
+        abrirItemVenda();
+    }//GEN-LAST:event_btnSelecionarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -233,5 +242,10 @@ public class ListarProdutoFrame extends javax.swing.JFrame {
          
          jTableClientes.setModel(model);
 
+    }
+
+    private void abrirItemVenda() {
+//        ItemVendaPanel itemVendaPanel = new ItemVendaPanel();
+//        itemVendaPanel.setVisible(true);
     }
 }
