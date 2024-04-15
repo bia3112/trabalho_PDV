@@ -4,6 +4,8 @@
  */
 package br.unipar.trabalhoPDV.Panel;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author vinid
@@ -26,32 +28,129 @@ public class CadastroItemVendaPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtQTD = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtDesconto = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        labelVlTo = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        btnsalvar = new javax.swing.JButton();
+        txtVlUn = new javax.swing.JTextField();
+
+        txtQTD.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtQTD.setText("0"); // NOI18N
+        txtQTD.setToolTipText("");
+        txtQTD.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtQTD.setName(""); // NOI18N
+        txtQTD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtQTDActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        jLabel4.setText("Quantidae");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        jLabel5.setText("Desconto unitario");
+
+        txtDesconto.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtDesconto.setText("0%"); // NOI18N
+        txtDesconto.setToolTipText("");
+        txtDesconto.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtDesconto.setName(""); // NOI18N
+        txtDesconto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDescontoActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        jLabel7.setText("Valor total");
+
+        labelVlTo.setText("0,00");
+        labelVlTo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        labelVlTo.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 48)); // NOI18N
         jLabel2.setText("Item Venda");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel10.setText("Nome do produto");
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel1.setText("Produto");
+
+        jButton1.setText("Calcular valor total");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        jLabel3.setText("Valor unitario");
+
+        btnsalvar.setText("Salvar");
+        btnsalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnsalvarActionPerformed(evt);
+            }
+        });
+
+        txtVlUn.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtVlUn.setText("0,00"); // NOI18N
+        txtVlUn.setToolTipText("");
+        txtVlUn.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtVlUn.setName(""); // NOI18N
+        txtVlUn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtVlUnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(jLabel2))
+                        .addComponent(jLabel1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(228, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(117, 117, 117)
+                                .addComponent(jLabel2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(42, 42, 42)
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnsalvar)))
+                        .addGap(114, 114, 114))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtDesconto, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                            .addComponent(txtQTD, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtVlUn)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(labelVlTo, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -61,15 +160,99 @@ public class CadastroItemVendaPanel extends javax.swing.JPanel {
                 .addGap(7, 7, 7)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(217, Short.MAX_VALUE))
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtVlUn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtQTD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelVlTo, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(btnsalvar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtQTDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQTDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtQTDActionPerformed
+
+    private void txtDescontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescontoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDescontoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        try {
+            double valorunitario, descontounitario, valototal;
+            int qtd;
+            valorunitario = Double.parseDouble(labelVlTo.getText());
+            System.out.println("valor unitario: " + valorunitario);
+
+            descontounitario = Double.parseDouble(txtDesconto.getText());
+            System.out.println("valor descnto: " + descontounitario);
+
+            qtd = Integer.parseInt(txtQTD.getText());
+            System.out.println("qtd: " + qtd);
+
+            double taxaDecimal = descontounitario / 100.0;
+            System.out.println("taxaDecimal: " + taxaDecimal);
+
+            double valorqtd = valorunitario * qtd;
+            System.out.println("valorqtd: " + valorqtd);
+
+            valototal = valorqtd * taxaDecimal;
+            System.out.println("valototal: " + valototal);
+
+            String resultadoTexto = String.valueOf(valototal);
+            labelVlTo.setText(resultadoTexto);
+            labelVlTo.repaint(); // Atualiza o rótulo para refletir o novo texto
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Erro ao calcular o valor total. Certifique-se de que os campos estão preenchidos corretamente.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnsalvarActionPerformed
+
+    private void txtVlUnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVlUnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtVlUnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton btnsalvar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel labelVlTo;
+    private javax.swing.JTextField txtDesconto;
+    private javax.swing.JTextField txtQTD;
+    private javax.swing.JTextField txtVlUn;
     // End of variables declaration//GEN-END:variables
+public void atualizarDescricaoProdutoSelecionado(String descricaoProduto) {
+        // Atualize o campo de texto com a descrição do produto
+        jLabel10.setText(descricaoProduto);
+    }
+
+
 }
