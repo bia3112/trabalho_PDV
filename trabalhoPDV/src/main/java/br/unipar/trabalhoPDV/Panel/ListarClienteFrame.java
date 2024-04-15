@@ -10,11 +10,15 @@ import br.unipar.trabalhoPDV.Util.EntityManagerUtil;
 import br.unipar.trabalhoPDV.interfaces.ClienteDAOImpl;
 import br.unipar.trabalhoPDV.interfaces.ClienteDao;
 import br.unipar.trabalhoPDV.model.Cliente;
+import java.awt.Component;
 import java.awt.Dialog;
+import java.awt.Window;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -231,35 +235,47 @@ public class ListarClienteFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSelecionar1ActionPerformed
 
     private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
-        // Obtém a descrição do produto selecionado na tabela
+
         System.out.println("Lista de clientes: " + listaCliente);
         String nomeCliente = ClienteTableModel.getSelectedCliente(tabelaCliente, listaCliente);
 
-        // Verifica se uma descrição de produto foi selecionada
         if (nomeCliente != null) {
-            // Exibe a descrição do produto selecionado
-            System.out.println("Cliente selecionado: " + nomeCliente);
+        System.out.println("Cliente selecionado: " + nomeCliente);
 
-            // Cria uma nova instância de CadastrarItemVendaPanel
-            VendaPanel vendaPanel = new VendaPanel();
+        // Encontrar o VendaPanel existente
+        VendaPanel vendaPanel = null;
+        for (Component component : getContentPane().getComponents()) {
+            if (component instanceof VendaPanel) {
+                vendaPanel = (VendaPanel) component;
+                break;
+            }
+        }
 
-            // Atualiza os campos da tela com as informações do produto selecionado
+        if (vendaPanel != null) {
+            // Atualizar o cliente selecionado no VendaPanel
             vendaPanel.atualizarClienteSelecionado(nomeCliente);
 
-            // Cria um novo JDialog para exibir o cadastrarItemVenda
-            JDialog dialogCliente = new JDialog();
-            dialogCliente.setTitle("Cadastrar Cliente");
-            dialogCliente.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-            dialogCliente.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-            dialogCliente.getContentPane().add(vendaPanel);
-            dialogCliente.pack();
-            dialogCliente.setLocationRelativeTo(null); // Centraliza o JDialog na tela
-            dialogCliente.setVisible(true);
-           
-            // Fecha a janela de listar produtos
-            dispose();
+            // Atualizar o JFrame para refletir as mudanças
+            revalidate();
+            repaint();
+
+            // Fechar o JFrame de seleção de cliente
+            dispose();  
+        }
+//            VendaPanel vendaPanel = new VendaPanel();
+//            vendaPanel.atualizarClienteSelecionado(nomeCliente);
+//
+//            JDialog dialogCliente = new JDialog();
+//            dialogCliente.setTitle("Cadastrar Cliente");
+//            dialogCliente.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+//            dialogCliente.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+//            dialogCliente.getContentPane().add(vendaPanel);
+//            dialogCliente.pack();
+//            dialogCliente.setLocationRelativeTo(null);
+//            dialogCliente.setVisible(true);
+//
+//            dispose();
         } else {
-            // Exibe uma mensagem de erro se nenhuma descrição de produto foi selecionada
             JOptionPane.showMessageDialog(this, "Selecione um produto na lista.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
         
@@ -290,24 +306,28 @@ public class ListarClienteFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtPesquisar2;
     // End of variables declaration//GEN-END:variables
     
+    
+    private VendaPanel findVendaPanel() {
+    Component[] components = getContentPane().getComponents();
+    for (Component component : components) {
+        if (component instanceof VendaPanel) {
+            return (VendaPanel) component;
+        }
+    }
+    return null; // Retorna null se não encontrar o VendaPanel
+}
+    
+    
     private void atualizarLista() {
-            
-     // Inicializa a lista de produtos
     listaCliente = new ArrayList<>();
-    
-    // Cria uma instância do DAO de Produto
+
     ClienteDao produtoDao = new ClienteDAOImpl(EntityManagerUtil.getManager());
-    
-    // Obtém a lista de produtos do banco de dados
     List<Cliente> listaProduto = produtoDao.findAll();
-    
-    // Adiciona os produtos à listaProdutos
+
     listaCliente.addAll(listaProduto);
-    
-    // Cria um novo modelo de tabela de produtos com a lista de produtos
+
     ClienteTableModel model = new ClienteTableModel(listaCliente);
-    
-    // Define o modelo da tabela de produtos
+
     tabelaCliente.setModel(model);
 
     }

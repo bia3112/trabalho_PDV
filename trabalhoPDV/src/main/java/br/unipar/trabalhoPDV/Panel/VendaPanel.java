@@ -262,8 +262,15 @@ public class VendaPanel extends javax.swing.JPanel {
     }
  
     public void atualizarClienteSelecionado(String nomeCliente) {
+        
+        if (nomeCliente != null) {
+            campoCliente.setText(nomeCliente);
+        } else {
+            campoCliente.setText(""); // Limpa o texto se o cliente for nulo
+        }
+        
         // Atualize o campo de texto com a descrição do produto
-        campoCliente.setText(nomeCliente);
+//        campoCliente.setText(nomeCliente);
     }
 
     private void abrirListaProduto() {
