@@ -10,21 +10,17 @@ import br.unipar.trabalhoPDV.interfaces.ProdutoDAO;
 import br.unipar.trabalhoPDV.interfaces.ProdutoDAOImpl;
 import br.unipar.trabalhoPDV.model.Produto;
 import java.awt.Dialog;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
 /**
  *
  * @author vinid
  */
 public class ListarProdutoFrame extends javax.swing.JFrame {
-    private Produto produtoSelecionado;
+
     private List<Produto> listaProdutos;
 
 

@@ -5,15 +5,16 @@
 package br.unipar.trabalhoPDV.Panel;
 
 import br.com.unipar.trabalhoPDV.tablemodels.ClienteTableModel;
+import br.unipar.trabalhoPDV.Panel.VendaPanel;
 import br.unipar.trabalhoPDV.Util.EntityManagerUtil;
 import br.unipar.trabalhoPDV.interfaces.ClienteDAOImpl;
 import br.unipar.trabalhoPDV.interfaces.ClienteDao;
 import br.unipar.trabalhoPDV.model.Cliente;
+import java.awt.Dialog;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,13 +22,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ListarClienteFrame extends javax.swing.JFrame {
 
+    private List<Cliente> listaCliente;
     /**
      * Creates new form ListarClienteFrame
      */
     public ListarClienteFrame() {
        initComponents();
         setLocationRelativeTo(null);
-        
+        this.listaCliente = new ArrayList<>();
         atualizarLista();
     }
 
@@ -95,6 +97,11 @@ public class ListarClienteFrame extends javax.swing.JFrame {
 
         btnSelecionar.setText("Selecionar");
         btnSelecionar.setToolTipText("");
+        btnSelecionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelecionarActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 48)); // NOI18N
         jLabel2.setText("Clientes");
@@ -220,8 +227,43 @@ public class ListarClienteFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void btnSelecionar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionar1ActionPerformed
-        selecionarClienteVenda();
+      
     }//GEN-LAST:event_btnSelecionar1ActionPerformed
+
+    private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
+        // Obtém a descrição do produto selecionado na tabela
+        System.out.println("Lista de clientes: " + listaCliente);
+        String nomeCliente = ClienteTableModel.getSelectedCliente(tabelaCliente, listaCliente);
+
+        // Verifica se uma descrição de produto foi selecionada
+        if (nomeCliente != null) {
+            // Exibe a descrição do produto selecionado
+            System.out.println("Cliente selecionado: " + nomeCliente);
+
+            // Cria uma nova instância de CadastrarItemVendaPanel
+            VendaPanel vendaPanel = new VendaPanel();
+
+            // Atualiza os campos da tela com as informações do produto selecionado
+            vendaPanel.atualizarClienteSelecionado(nomeCliente);
+
+            // Cria um novo JDialog para exibir o cadastrarItemVenda
+            JDialog dialogCliente = new JDialog();
+            dialogCliente.setTitle("Cadastrar Cliente");
+            dialogCliente.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+            dialogCliente.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            dialogCliente.getContentPane().add(vendaPanel);
+            dialogCliente.pack();
+            dialogCliente.setLocationRelativeTo(null); // Centraliza o JDialog na tela
+            dialogCliente.setVisible(true);
+           
+            // Fecha a janela de listar produtos
+            dispose();
+        } else {
+            // Exibe uma mensagem de erro se nenhuma descrição de produto foi selecionada
+            JOptionPane.showMessageDialog(this, "Selecione um produto na lista.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_btnSelecionarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,34 +289,27 @@ public class ListarClienteFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtPesquisar1;
     private javax.swing.JTextField txtPesquisar2;
     // End of variables declaration//GEN-END:variables
- private void atualizarLista() {
-     
-     List<Cliente> listaClientes = new ArrayList<>();
-         
-         ClienteDao clienteDao = new ClienteDAOImpl(EntityManagerUtil.getManager());
-         listaClientes.addAll(clienteDao.findAll());
-         
-         ClienteTableModel model = new ClienteTableModel(listaClientes);
-         
-         tabelaCliente.setModel(model);
+    
+    private void atualizarLista() {
+            
+     // Inicializa a lista de produtos
+    listaCliente = new ArrayList<>();
+    
+    // Cria uma instância do DAO de Produto
+    ClienteDao produtoDao = new ClienteDAOImpl(EntityManagerUtil.getManager());
+    
+    // Obtém a lista de produtos do banco de dados
+    List<Cliente> listaProduto = produtoDao.findAll();
+    
+    // Adiciona os produtos à listaProdutos
+    listaCliente.addAll(listaProduto);
+    
+    // Cria um novo modelo de tabela de produtos com a lista de produtos
+    ClienteTableModel model = new ClienteTableModel(listaCliente);
+    
+    // Define o modelo da tabela de produtos
+    tabelaCliente.setModel(model);
 
     }
-
-    private void selecionarClienteVenda() {
-        
-//        VendaPanel vendaPanel = new VendaPanel();
-//        JTextField cliente = vendaPanel.getCliente();
-//        
-//        int selectedRow = tabelaCliente.getSelectedRow();
-//
-//        Object nome = tabelaCliente.getValueAt(selectedRow, 0);
-//
-//        cliente.setText(nome != null ? nome.toString() : "");
-        
-    }  
-    
-    
-    
-    
     
 }

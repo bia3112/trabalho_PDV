@@ -261,6 +261,10 @@ public class VendaPanel extends javax.swing.JPanel {
         listarClienteFrame.setVisible(true);
     }
  
+    public void atualizarClienteSelecionado(String nomeCliente) {
+        // Atualize o campo de texto com a descrição do produto
+        campoCliente.setText(nomeCliente);
+    }
 
     private void abrirListaProduto() {
         ListarProdutoFrame listarProdutoFrame = new ListarProdutoFrame();

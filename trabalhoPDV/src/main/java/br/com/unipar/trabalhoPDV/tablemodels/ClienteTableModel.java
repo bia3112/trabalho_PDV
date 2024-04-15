@@ -32,10 +32,16 @@ public class ClienteTableModel  extends DefaultTableModel {
         }
     }
     
-    public Cliente getSelectedCliente(JTable table, 
-            List<Cliente> clientes) {
+    public static String getSelectedCliente(JTable table, 
+            List<Cliente> listaCliente) {
         
-        //TODO
+        int row = table.getSelectedRow();
+        if (row != -1) {
+            Cliente cliente = listaCliente.get(row);
+            return cliente.getNome(); // Supondo que a descrição do produto é um atributo "descricao"
+            
+        }
+        
         return null;
     }
     
