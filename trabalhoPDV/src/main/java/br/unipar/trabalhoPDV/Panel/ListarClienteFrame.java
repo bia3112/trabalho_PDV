@@ -27,6 +27,7 @@ import javax.swing.SwingUtilities;
 public class ListarClienteFrame extends javax.swing.JFrame {
 
     private List<Cliente> listaCliente;
+    private JDialog dialogCliente; 
     /**
      * Creates new form ListarClienteFrame
      */
@@ -236,48 +237,30 @@ public class ListarClienteFrame extends javax.swing.JFrame {
 
     private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
 
-        System.out.println("Lista de clientes: " + listaCliente);
-        String nomeCliente = ClienteTableModel.getSelectedCliente(tabelaCliente, listaCliente);
+    System.out.println("Lista de clientes: " + listaCliente);
+    String nomeCliente = ClienteTableModel.getSelectedCliente(tabelaCliente, listaCliente);
 
-        if (nomeCliente != null) {
-        System.out.println("Cliente selecionado: " + nomeCliente);
+    if (nomeCliente != null) {
+        if (dialogCliente == null) {
+            dialogCliente = new JDialog();
+            dialogCliente.setTitle("Cadastrar Cliente");
+            dialogCliente.setModalityType(Dialog.ModalityType.MODELESS);
+            dialogCliente.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
-        // Encontrar o VendaPanel existente
-        VendaPanel vendaPanel = null;
-        for (Component component : getContentPane().getComponents()) {
-            if (component instanceof VendaPanel) {
-                vendaPanel = (VendaPanel) component;
-                break;
-            }
+            VendaPanel vendaPanel = new VendaPanel();
+            dialogCliente.getContentPane().add(vendaPanel);
+            dialogCliente.pack();
+            dialogCliente.setLocationRelativeTo(null);
         }
 
-        if (vendaPanel != null) {
-            // Atualizar o cliente selecionado no VendaPanel
-            vendaPanel.atualizarClienteSelecionado(nomeCliente);
+        VendaPanel vendaPanel = (VendaPanel) dialogCliente.getContentPane().getComponent(0);
+        vendaPanel.atualizarClienteSelecionado(nomeCliente);
 
-            // Atualizar o JFrame para refletir as mudanças
-            revalidate();
-            repaint();
-
-            // Fechar o JFrame de seleção de cliente
-            dispose();  
-        }
-//            VendaPanel vendaPanel = new VendaPanel();
-//            vendaPanel.atualizarClienteSelecionado(nomeCliente);
-//
-//            JDialog dialogCliente = new JDialog();
-//            dialogCliente.setTitle("Cadastrar Cliente");
-//            dialogCliente.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
-//            dialogCliente.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-//            dialogCliente.getContentPane().add(vendaPanel);
-//            dialogCliente.pack();
-//            dialogCliente.setLocationRelativeTo(null);
-//            dialogCliente.setVisible(true);
-//
-//            dispose();
-        } else {
-            JOptionPane.showMessageDialog(this, "Selecione um produto na lista.", "Erro", JOptionPane.ERROR_MESSAGE);
-        }
+        dialogCliente.setVisible(true);
+        dispose();
+    } else {
+        JOptionPane.showMessageDialog(this, "Selecione um produto na lista.", "Erro", JOptionPane.ERROR_MESSAGE);
+    }
         
     }//GEN-LAST:event_btnSelecionarActionPerformed
 
