@@ -73,6 +73,7 @@ public class CadastroItemVendaPanel extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jLabel7.setText("Valor total");
 
+        labelVlTo.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         labelVlTo.setText("0,00");
         labelVlTo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         labelVlTo.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -121,9 +122,6 @@ public class CadastroItemVendaPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(117, 117, 117)
@@ -134,18 +132,23 @@ public class CadastroItemVendaPanel extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnsalvar)))
                         .addGap(114, 114, 114))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtDesconto, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
-                            .addComponent(txtQTD, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtVlUn)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(labelVlTo, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtDesconto, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                                    .addComponent(txtQTD, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(txtVlUn)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(labelVlTo, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap())))
             .addGroup(layout.createSequentialGroup()
                 .addGap(46, 46, 46)
@@ -196,37 +199,65 @@ public class CadastroItemVendaPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        try {
-            double valorunitario, descontounitario, valototal;
-            int qtd;
-            valorunitario = Double.parseDouble(labelVlTo.getText());
-            System.out.println("valor unitario: " + valorunitario);
-
-            descontounitario = Double.parseDouble(txtDesconto.getText());
-            System.out.println("valor descnto: " + descontounitario);
-
-            qtd = Integer.parseInt(txtQTD.getText());
-            System.out.println("qtd: " + qtd);
-
-            double taxaDecimal = descontounitario / 100.0;
-            System.out.println("taxaDecimal: " + taxaDecimal);
-
-            double valorqtd = valorunitario * qtd;
-            System.out.println("valorqtd: " + valorqtd);
-
-            valototal = valorqtd * taxaDecimal;
-            System.out.println("valototal: " + valototal);
-
-            String resultadoTexto = String.valueOf(valototal);
-            labelVlTo.setText(resultadoTexto);
-            labelVlTo.repaint(); // Atualiza o rótulo para refletir o novo texto
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Erro ao calcular o valor total. Certifique-se de que os campos estão preenchidos corretamente.", "Erro", JOptionPane.ERROR_MESSAGE);
+  try {
+        double valorUnitario = Double.parseDouble(txtVlUn.getText().replace(",", ".")); // Substitui vírgulas por pontos
+        System.out.println("Valor Unitário: " + valorUnitario);
+        if (valorUnitario <= 0) {
+            throw new NumberFormatException();
         }
+
+        int qtd = Integer.parseInt(txtQTD.getText());
+        System.out.println("Quantidade: " + qtd);
+        if (qtd <= 0) {
+            throw new NumberFormatException();
+        }
+
+        double desconto = Double.parseDouble(txtDesconto.getText().replace(",", ".")); // Substitui vírgulas por pontos
+        System.out.println("Desconto: " + desconto);
+        if (desconto < 0) {
+            throw new NumberFormatException();
+        }
+
+        double valorTotal = calcularValorTotal(valorUnitario, qtd, desconto);
+
+        // Formatar o valor total com duas casas decimais
+        String valorTotalFormatado = String.format("%.2f", valorTotal);
+
+        labelVlTo.setText(valorTotalFormatado);
+        labelVlTo.repaint(); // Atualiza o rótulo para refletir o novo texto
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Certifique-se de preencher os campos corretamente.", "Erro", JOptionPane.ERROR_MESSAGE);
+    }
+
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
-        // TODO add your handling code here:
+         try {
+        // Criar um novo ItemVenda
+        ItemVenda itemVenda = new ItemVenda();
+        
+        // Preencher os dados do ItemVenda com os valores dos campos do formulário
+        itemVenda.setDescricao(jLabel10.getText());
+        itemVenda.setValorUnitario(Double.parseDouble(txtVlUn.getText().replace(",", ".")));
+        itemVenda.setQuantidade(Integer.parseInt(txtQTD.getText()));
+        itemVenda.setDescontoUnitario(Double.parseDouble(txtDesconto.getText().replace(",", ".")));
+
+        // Vincular o ItemVenda à venda atual
+        // Supondo que você tenha uma referência à venda atual (por exemplo, vendaAtual)
+        itemVenda.setVenda(vendaAtual);
+        
+        // Adicionar o ItemVenda à lista de itens da venda atual
+        vendaAtual.getItens().add(itemVenda);
+        
+        // Salvar a venda atual (isso também salvará os itens de venda devido à cascata)
+        vendaDAO.save(vendaAtual);
+        
+        JOptionPane.showMessageDialog(this, "Item de venda salvo com sucesso!");
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Certifique-se de preencher os campos corretamente.", "Erro", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_btnsalvarActionPerformed
 
     private void txtVlUnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVlUnActionPerformed
@@ -254,5 +285,13 @@ public void atualizarDescricaoProdutoSelecionado(String descricaoProduto) {
         jLabel10.setText(descricaoProduto);
     }
 
+private double calcularValorTotal(double valorUnitario, int qtd, double desconto) {
+    double valorTotal = valorUnitario * qtd;
+    double taxaDesconto = desconto / 100.0;
+    valorTotal -= valorTotal * taxaDesconto;
+    return valorTotal;
+}
 
 }
+
+
