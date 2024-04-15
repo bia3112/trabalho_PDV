@@ -9,23 +9,38 @@ import br.unipar.trabalhoPDV.Util.EntityManagerUtil;
 import br.unipar.trabalhoPDV.interfaces.ProdutoDAO;
 import br.unipar.trabalhoPDV.interfaces.ProdutoDAOImpl;
 import br.unipar.trabalhoPDV.model.Produto;
+import java.awt.Dialog;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
  * @author vinid
  */
 public class ListarProdutoFrame extends javax.swing.JFrame {
+    private Produto produtoSelecionado;
+    private List<Produto> listaProdutos;
+
 
     /**
      * Creates new form ListarProdutoFrame
      */
     public ListarProdutoFrame() {
-        initComponents();
+       initComponents();
         setLocationRelativeTo(null);
+        this.listaProdutos = new ArrayList<>();
         
-        atualizarLista();
+        
+      
+         atualizarLista();
+         
+        
     }
 
     /**
@@ -40,7 +55,7 @@ public class ListarProdutoFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableClientes = new javax.swing.JTable();
+        jTableprodutos = new javax.swing.JTable();
         btnSelecionar1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
@@ -61,7 +76,7 @@ public class ListarProdutoFrame extends javax.swing.JFrame {
             }
         });
 
-        jTableClientes.setModel(new javax.swing.table.DefaultTableModel(
+        jTableprodutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -75,8 +90,8 @@ public class ListarProdutoFrame extends javax.swing.JFrame {
                 "Codigo", "Descrição"
             }
         ));
-        jTableClientes.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(jTableClientes);
+        jTableprodutos.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jTableprodutos);
 
         btnSelecionar1.setText("Pesquisar");
         btnSelecionar1.setToolTipText("");
@@ -181,7 +196,39 @@ public class ListarProdutoFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
-        abrirItemVenda();
+
+        // Obtém a descrição do produto selecionado na tabela
+        System.out.println("Lista de produtos: " + listaProdutos);
+        String descricaoProduto = ProdutoTableModel.getSelectedProduto(jTableprodutos, listaProdutos);
+
+        // Verifica se uma descrição de produto foi selecionada
+        if (descricaoProduto != null) {
+            // Exibe a descrição do produto selecionado
+            System.out.println("Descrição do produto selecionado: " + descricaoProduto);
+
+            // Cria uma nova instância de CadastrarItemVendaPanel
+            CadastroItemVendaPanel cadastrarItemVenda = new CadastroItemVendaPanel();
+
+            // Atualiza os campos da tela com as informações do produto selecionado
+            cadastrarItemVenda.atualizarDescricaoProdutoSelecionado(descricaoProduto);
+
+            // Cria um novo JDialog para exibir o cadastrarItemVenda
+            JDialog dialogCadastrarItemVenda = new JDialog();
+            dialogCadastrarItemVenda.setTitle("Cadastrar Item de Venda");
+            dialogCadastrarItemVenda.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+            dialogCadastrarItemVenda.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            dialogCadastrarItemVenda.getContentPane().add(cadastrarItemVenda);
+            dialogCadastrarItemVenda.pack();
+            dialogCadastrarItemVenda.setLocationRelativeTo(null); // Centraliza o JDialog na tela
+            dialogCadastrarItemVenda.setVisible(true);
+           
+            // Fecha a janela de listar produtos
+            dispose();
+        } else {
+            // Exibe uma mensagem de erro se nenhuma descrição de produto foi selecionada
+            JOptionPane.showMessageDialog(this, "Selecione um produto na lista.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    
     }//GEN-LAST:event_btnSelecionarActionPerformed
 
     /**
@@ -228,24 +275,35 @@ public class ListarProdutoFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableClientes;
+    private javax.swing.JTable jTableprodutos;
     private javax.swing.JTextField txtPesquisar1;
     // End of variables declaration//GEN-END:variables
  private void atualizarLista() {
      
-     List<Produto> listaproduto = new ArrayList<>();
-         
-         ProdutoDAO produtoDao = new ProdutoDAOImpl(EntityManagerUtil.getManager());
-         listaproduto.addAll(produtoDao.findAll());
-         
-         ProdutoTableModel model = new ProdutoTableModel(listaproduto);
-         
-         jTableClientes.setModel(model);
+     // Inicializa a lista de produtos
+    listaProdutos = new ArrayList<>();
+    
+    // Cria uma instância do DAO de Produto
+    ProdutoDAO produtoDao = new ProdutoDAOImpl(EntityManagerUtil.getManager());
+    
+    // Obtém a lista de produtos do banco de dados
+    List<Produto> listaProduto = produtoDao.findAll();
+    
+    // Adiciona os produtos à listaProdutos
+    listaProdutos.addAll(listaProduto);
+    
+    // Cria um novo modelo de tabela de produtos com a lista de produtos
+    ProdutoTableModel model = new ProdutoTableModel(listaProdutos);
+    
+    // Define o modelo da tabela de produtos
+    jTableprodutos.setModel(model);
 
     }
 
     private void abrirItemVenda() {
-//        ItemVendaPanel itemVendaPanel = new ItemVendaPanel();
-//        itemVendaPanel.setVisible(true);
-    }
+        CadastroItemVendaPanel itemVendaPanel = new CadastroItemVendaPanel();
+        itemVendaPanel.setVisible(true);
+        
+       }
 }
+

@@ -34,6 +34,7 @@ public class ClienteTableModel  extends DefaultTableModel {
     
     public Cliente getSelectedCliente(JTable table, 
             List<Cliente> clientes) {
+        
         //TODO
         return null;
     }
