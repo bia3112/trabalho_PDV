@@ -236,23 +236,23 @@ public class CadastroItemVendaPanel extends javax.swing.JPanel {
     private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
          try {
         // Criar um novo ItemVenda
-        ItemVenda itemVenda = new ItemVenda();
+//        ItemVenda itemVenda = new ItemVenda();
         
         // Preencher os dados do ItemVenda com os valores dos campos do formulário
-        itemVenda.setDescricao(jLabel10.getText());
-        itemVenda.setValorUnitario(Double.parseDouble(txtVlUn.getText().replace(",", ".")));
-        itemVenda.setQuantidade(Integer.parseInt(txtQTD.getText()));
-        itemVenda.setDescontoUnitario(Double.parseDouble(txtDesconto.getText().replace(",", ".")));
+//        itemVenda.setDescricao(jLabel10.getText());
+//        itemVenda.setValorUnitario(Double.parseDouble(txtVlUn.getText().replace(",", ".")));
+//        itemVenda.setQuantidade(Integer.parseInt(txtQTD.getText()));
+//        itemVenda.setDescontoUnitario(Double.parseDouble(txtDesconto.getText().replace(",", ".")));
 
         // Vincular o ItemVenda à venda atual
-        // Supondo que você tenha uma referência à venda atual (por exemplo, vendaAtual)
-        itemVenda.setVenda(vendaAtual);
-        
-        // Adicionar o ItemVenda à lista de itens da venda atual
-        vendaAtual.getItens().add(itemVenda);
-        
-        // Salvar a venda atual (isso também salvará os itens de venda devido à cascata)
-        vendaDAO.save(vendaAtual);
+//        // Supondo que você tenha uma referência à venda atual (por exemplo, vendaAtual)
+//        itemVenda.setVenda(vendaAtual);
+//        
+//        // Adicionar o ItemVenda à lista de itens da venda atual
+//        vendaAtual.getItens().add(itemVenda);
+//        
+//        // Salvar a venda atual (isso também salvará os itens de venda devido à cascata)
+//        vendaDAO.save(vendaAtual);
         
         JOptionPane.showMessageDialog(this, "Item de venda salvo com sucesso!");
     } catch (NumberFormatException e) {
