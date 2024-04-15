@@ -5,6 +5,7 @@
 package br.unipar.trabalhoPDV.Panel;
 
 import br.com.unipar.trabalhoPDV.tablemodels.ClienteTableModel;
+import br.unipar.trabalhoPDV.Panel.VendaPanel;
 import br.unipar.trabalhoPDV.Util.EntityManagerUtil;
 import br.unipar.trabalhoPDV.interfaces.ClienteDAOImpl;
 import br.unipar.trabalhoPDV.interfaces.ClienteDao;
@@ -96,6 +97,11 @@ public class ListarClienteFrame extends javax.swing.JFrame {
 
         btnSelecionar.setText("Selecionar");
         btnSelecionar.setToolTipText("");
+        btnSelecionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelecionarActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 48)); // NOI18N
         jLabel2.setText("Clientes");
@@ -221,6 +227,10 @@ public class ListarClienteFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void btnSelecionar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionar1ActionPerformed
+      
+    }//GEN-LAST:event_btnSelecionar1ActionPerformed
+
+    private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
         // Obtém a descrição do produto selecionado na tabela
         System.out.println("Lista de clientes: " + listaCliente);
         String nomeCliente = ClienteTableModel.getSelectedCliente(tabelaCliente, listaCliente);
@@ -252,7 +262,8 @@ public class ListarClienteFrame extends javax.swing.JFrame {
             // Exibe uma mensagem de erro se nenhuma descrição de produto foi selecionada
             JOptionPane.showMessageDialog(this, "Selecione um produto na lista.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_btnSelecionar1ActionPerformed
+        
+    }//GEN-LAST:event_btnSelecionarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -280,16 +291,24 @@ public class ListarClienteFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     
     private void atualizarLista() {
-        listaCliente = new ArrayList<> ();
-
-        ClienteDao clienteDao = new ClienteDAOImpl(EntityManagerUtil.getManager());
-
-        List<Cliente> listaClientes = clienteDao.findAll();   
-        listaClientes.addAll(listaClientes);
-
-        ClienteTableModel model = new ClienteTableModel(listaClientes);
-
-        tabelaCliente.setModel(model);
+            
+     // Inicializa a lista de produtos
+    listaCliente = new ArrayList<>();
+    
+    // Cria uma instância do DAO de Produto
+    ClienteDao produtoDao = new ClienteDAOImpl(EntityManagerUtil.getManager());
+    
+    // Obtém a lista de produtos do banco de dados
+    List<Cliente> listaProduto = produtoDao.findAll();
+    
+    // Adiciona os produtos à listaProdutos
+    listaCliente.addAll(listaProduto);
+    
+    // Cria um novo modelo de tabela de produtos com a lista de produtos
+    ClienteTableModel model = new ClienteTableModel(listaCliente);
+    
+    // Define o modelo da tabela de produtos
+    tabelaCliente.setModel(model);
 
     }
     
