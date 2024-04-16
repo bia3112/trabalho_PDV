@@ -4,6 +4,7 @@
  */
 package br.unipar.trabalhoPDV.Panel;
 
+import br.unipar.trabalhoPDV.model.Venda;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -13,6 +14,7 @@ import javax.swing.JTextField;
  */
 public class VendaPanel extends javax.swing.JPanel {
 
+    private static Venda vendaAtual;
     /**
      * Creates new form VendaPanel
      */
@@ -266,16 +268,21 @@ public class VendaPanel extends javax.swing.JPanel {
         if (nomeCliente != null) {
             campoCliente.setText(nomeCliente);
         } else {
-            campoCliente.setText(""); // Limpa o texto se o cliente for nulo
+            campoCliente.setText("");
         }
-        
-        // Atualize o campo de texto com a descrição do produto
-//        campoCliente.setText(nomeCliente);
+
     }
 
     private void abrirListaProduto() {
         ListarProdutoFrame listarProdutoFrame = new ListarProdutoFrame();
         listarProdutoFrame.setVisible(true);
+    }
+    
+    public static Venda getVendaAtual() {
+        if (vendaAtual == null) {
+            vendaAtual = new Venda(); // Crie uma nova venda se ainda não existir
+        }
+        return vendaAtual;
     }
 
     private void limparDados() {

@@ -297,7 +297,7 @@ public class ListarClienteFrame extends javax.swing.JFrame {
             return (VendaPanel) component;
         }
     }
-    return null; // Retorna null se não encontrar o VendaPanel
+    return null;
 }
     
     

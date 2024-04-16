@@ -35,7 +35,6 @@ public class TrabalhoPDV extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);    
         
-        //panel principal Venda
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
 
@@ -45,30 +44,17 @@ public class TrabalhoPDV extends JFrame{
         add(cardPanel);
          cardLayout.show(cardPanel, "VENDA");
        
-        // Criando a barra de menu
         JMenuBar menuBar = new JMenuBar();
 
-        //Criar Menu Cadastro
         JMenu menulistas = new JMenu("Listas");
-        
-        
-        //Criar menus de cadastro e lista de clientes
        
         JMenuItem listarCliente = new JMenuItem("Cliente");
         JMenuItem ListarProduto = new JMenuItem("Produto");
-        
-        
-        //Adicionar menus de cadastro no menu Cliente
        
         menulistas.add(listarCliente);
         menulistas.add(ListarProduto);
-        
-        
-        
-        menuBar.add(menulistas);
-        
 
-         //Adiciona ações menus clientes
+        menuBar.add(menulistas);
       
         listarCliente.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
