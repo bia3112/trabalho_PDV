@@ -270,7 +270,7 @@ public class CadastroItemVendaPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtVlUn;
     // End of variables declaration//GEN-END:variables
 public void atualizarDescricaoProdutoSelecionado(String descricaoProduto) {
-        // Atualize o campo de texto com a descrição do produto
+       
         jLabel10.setText(descricaoProduto);
     }
 

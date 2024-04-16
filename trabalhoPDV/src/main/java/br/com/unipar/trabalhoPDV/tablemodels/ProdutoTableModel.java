@@ -27,7 +27,7 @@ public class ProdutoTableModel extends DefaultTableModel {
         int row = table.getSelectedRow();
         if (row != -1) {
             Produto produto = listaProdutos.get(row);
-            return produto.getDescricao(); // Supondo que a descrição do produto é um atributo "descricao"
+            return produto.getDescricao(); 
             
         }
         

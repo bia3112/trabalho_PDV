@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  * @author vinid
  */
 public class ClienteTableModel  extends DefaultTableModel {
-      //titulos colunas
+      
     public ClienteTableModel() {
         this.addColumn("Nome");
         this.addColumn("Telefone");
