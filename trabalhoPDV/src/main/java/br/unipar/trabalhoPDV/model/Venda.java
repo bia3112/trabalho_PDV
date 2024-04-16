@@ -88,4 +88,8 @@ public class Venda {
     public List<ItemVenda> getItens() {
         return itens;
     }
+    
+     public void adicionarItem(ItemVenda item) {
+        this.itens.add(item);
+    }
 }

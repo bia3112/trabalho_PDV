@@ -193,35 +193,27 @@ public class ListarProdutoFrame extends javax.swing.JFrame {
 
     private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
 
-        // Obtém a descrição do produto selecionado na tabela
         System.out.println("Lista de produtos: " + listaProdutos);
         String descricaoProduto = ProdutoTableModel.getSelectedProduto(jTableprodutos, listaProdutos);
 
-        // Verifica se uma descrição de produto foi selecionada
         if (descricaoProduto != null) {
-            // Exibe a descrição do produto selecionado
             System.out.println("Descrição do produto selecionado: " + descricaoProduto);
 
-            // Cria uma nova instância de CadastrarItemVendaPanel
             CadastroItemVendaPanel cadastrarItemVenda = new CadastroItemVendaPanel();
 
-            // Atualiza os campos da tela com as informações do produto selecionado
             cadastrarItemVenda.atualizarDescricaoProdutoSelecionado(descricaoProduto);
 
-            // Cria um novo JDialog para exibir o cadastrarItemVenda
             JDialog dialogCadastrarItemVenda = new JDialog();
             dialogCadastrarItemVenda.setTitle("Cadastrar Item de Venda");
             dialogCadastrarItemVenda.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
             dialogCadastrarItemVenda.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
             dialogCadastrarItemVenda.getContentPane().add(cadastrarItemVenda);
             dialogCadastrarItemVenda.pack();
-            dialogCadastrarItemVenda.setLocationRelativeTo(null); // Centraliza o JDialog na tela
+            dialogCadastrarItemVenda.setLocationRelativeTo(null);
             dialogCadastrarItemVenda.setVisible(true);
-           
-            // Fecha a janela de listar produtos
+
             dispose();
         } else {
-            // Exibe uma mensagem de erro se nenhuma descrição de produto foi selecionada
             JOptionPane.showMessageDialog(this, "Selecione um produto na lista.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     
@@ -275,23 +267,16 @@ public class ListarProdutoFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtPesquisar1;
     // End of variables declaration//GEN-END:variables
  private void atualizarLista() {
-     
-     // Inicializa a lista de produtos
     listaProdutos = new ArrayList<>();
-    
-    // Cria uma instância do DAO de Produto
+
     ProdutoDAO produtoDao = new ProdutoDAOImpl(EntityManagerUtil.getManager());
-    
-    // Obtém a lista de produtos do banco de dados
+
     List<Produto> listaProduto = produtoDao.findAll();
-    
-    // Adiciona os produtos à listaProdutos
+
     listaProdutos.addAll(listaProduto);
-    
-    // Cria um novo modelo de tabela de produtos com a lista de produtos
+
     ProdutoTableModel model = new ProdutoTableModel(listaProdutos);
-    
-    // Define o modelo da tabela de produtos
+
     jTableprodutos.setModel(model);
 
     }

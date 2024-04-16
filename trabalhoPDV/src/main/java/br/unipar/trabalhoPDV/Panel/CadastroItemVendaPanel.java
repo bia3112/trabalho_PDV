@@ -4,6 +4,8 @@
  */
 package br.unipar.trabalhoPDV.Panel;
 
+import br.unipar.trabalhoPDV.model.ItemVenda;
+import br.unipar.trabalhoPDV.model.Venda;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,6 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class CadastroItemVendaPanel extends javax.swing.JPanel {
 
+    private Venda venda;
     /**
      * Creates new form CadastroItemVendaPanel
      */
@@ -199,65 +202,51 @@ public class CadastroItemVendaPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-  try {
-        double valorUnitario = Double.parseDouble(txtVlUn.getText().replace(",", ".")); // Substitui vírgulas por pontos
-        System.out.println("Valor Unitário: " + valorUnitario);
-        if (valorUnitario <= 0) {
-            throw new NumberFormatException();
-        }
+    try {
+          double valorUnitario = Double.parseDouble(txtVlUn.getText().replace(",", ".")); // Substitui vírgulas por pontos
+          System.out.println("Valor Unitário: " + valorUnitario);
+          if (valorUnitario <= 0) {
+              throw new NumberFormatException();
+          }
 
-        int qtd = Integer.parseInt(txtQTD.getText());
-        System.out.println("Quantidade: " + qtd);
-        if (qtd <= 0) {
-            throw new NumberFormatException();
-        }
+          int qtd = Integer.parseInt(txtQTD.getText());
+          System.out.println("Quantidade: " + qtd);
+          if (qtd <= 0) {
+              throw new NumberFormatException();
+          }
 
-        double desconto = Double.parseDouble(txtDesconto.getText().replace(",", ".")); // Substitui vírgulas por pontos
-        System.out.println("Desconto: " + desconto);
-        if (desconto < 0) {
-            throw new NumberFormatException();
-        }
+          double desconto = Double.parseDouble(txtDesconto.getText().replace(",", "."));
+          System.out.println("Desconto: " + desconto);
+          if (desconto < 0) {
+              throw new NumberFormatException();
+          }
 
-        double valorTotal = calcularValorTotal(valorUnitario, qtd, desconto);
+          double valorTotal = calcularValorTotal(valorUnitario, qtd, desconto);
 
-        // Formatar o valor total com duas casas decimais
-        String valorTotalFormatado = String.format("%.2f", valorTotal);
+          String valorTotalFormatado = String.format("%.2f", valorTotal);
 
-        labelVlTo.setText(valorTotalFormatado);
-        labelVlTo.repaint(); // Atualiza o rótulo para refletir o novo texto
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Certifique-se de preencher os campos corretamente.", "Erro", JOptionPane.ERROR_MESSAGE);
+          labelVlTo.setText(valorTotalFormatado);
+          labelVlTo.repaint();
+      } catch (NumberFormatException e) {
+          JOptionPane.showMessageDialog(this, "Certifique-se de preencher os campos corretamente.", "Erro", JOptionPane.ERROR_MESSAGE);
     }
-
-
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
-         try {
-        // Criar um novo ItemVenda
-//        ItemVenda itemVenda = new ItemVenda();
-        
-        // Preencher os dados do ItemVenda com os valores dos campos do formulário
-//        itemVenda.setDescricao(jLabel10.getText());
-//        itemVenda.setValorUnitario(Double.parseDouble(txtVlUn.getText().replace(",", ".")));
-//        itemVenda.setQuantidade(Integer.parseInt(txtQTD.getText()));
-//        itemVenda.setDescontoUnitario(Double.parseDouble(txtDesconto.getText().replace(",", ".")));
+        try {
+            ItemVenda item = new ItemVenda();
 
-        // Vincular o ItemVenda à venda atual
-//        // Supondo que você tenha uma referência à venda atual (por exemplo, vendaAtual)
-//        itemVenda.setVenda(vendaAtual);
-//        
-//        // Adicionar o ItemVenda à lista de itens da venda atual
-//        vendaAtual.getItens().add(itemVenda);
-//        
-//        // Salvar a venda atual (isso também salvará os itens de venda devido à cascata)
-//        vendaDAO.save(vendaAtual);
+            if (venda == null) {
+                venda = new Venda();
+            }
+            venda.adicionarItem(item);
         
-        JOptionPane.showMessageDialog(this, "Item de venda salvo com sucesso!");
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Certifique-se de preencher os campos corretamente.", "Erro", JOptionPane.ERROR_MESSAGE);
-    }
+            JOptionPane.showMessageDialog(this, "Item de venda salvo com sucesso!");
+            
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Certifique-se de preencher os campos corretamente.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnsalvarActionPerformed
 
     private void txtVlUnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVlUnActionPerformed
@@ -291,6 +280,8 @@ private double calcularValorTotal(double valorUnitario, int qtd, double desconto
     valorTotal -= valorTotal * taxaDesconto;
     return valorTotal;
 }
+
+
 
 }
 
